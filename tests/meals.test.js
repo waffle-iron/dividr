@@ -159,3 +159,38 @@ describe('DELETE /meals/:id', () => {
     });
 
 });
+
+describe('PATCH /meals/:id', () => {
+    it('should update a meal if a valid request is sent', (done) => {
+        let id = meals[0]._id.toHexString();
+        let mealName = 'Testing update route';
+
+        request(app)
+            .patch(`/meals/${id}`)
+            .send({
+                mealName
+            })
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.meal.mealName).toBe(mealName);
+            })
+            .end(done);
+    });
+
+    it('should return a 404 if meal is not found', (done) => {
+        let id = new ObjectID().toHexString();
+        let mealName = 'Testing update route';
+        request(app)
+            .patch(`/meals/${id}`)
+            .send({ mealName })
+            .expect(404)
+            .end(done);
+    });
+
+    it('should return a 404 if malformed id is sent', (done) => {
+        request(app)
+            .patch('/meals/123abc')
+            .expect(404)
+            .end(done);
+    });
+});

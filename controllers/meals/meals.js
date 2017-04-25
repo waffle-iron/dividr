@@ -1,4 +1,5 @@
 const {ObjectID} = require('mongodb');
+const _ = require('lodash');
 
 const {Meal} = require('./../../models/meal');
 
@@ -62,9 +63,28 @@ let deleteMeal = (req, res) => {
     });
 };
 
+let updateMeal = (req, res) => {
+    let id = req.params.id;
+    let body = _.pick(req.body, ['mealName', 'servings', 'cookedWeight']);
+    if(!ObjectID.isValid(id)) {
+        return res.sendStatus(404);
+    }
+    Meal.findOneAndUpdate({
+        _id : id
+    }, { $set : body}, {new : true}).then((meal) => {
+        if(!meal) {
+            return res.sendStatus(404);
+        }
+        res.status(200).send({meal});
+    }).catch((e) => {
+        res.status(400).send(e);
+    })
+};
+
 module.exports = {
     createMeal,
     listMeals,
     getMeal,
-    deleteMeal
+    deleteMeal,
+    updateMeal
 };

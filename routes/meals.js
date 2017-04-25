@@ -11,4 +11,6 @@ router.get('/:id', meal_controller.getMeal);
 
 router.delete('/:id', meal_controller.deleteMeal);
 
+router.patch('/:id', meal_controller.updateMeal);
+
 module.exports = router;
