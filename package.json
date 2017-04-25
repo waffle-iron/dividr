@@ -11,11 +11,15 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "hbs": "~4.0.1",
+    "mongoose": "^4.9.6",
     "morgan": "~1.8.1",
     "node-sass-middleware": "0.9.8",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "jest": "^19.0.2"
+    "expect": "^1.20.2",
+    "jest": "^19.0.2",
+    "mocha": "^3.3.0",
+    "supertest": "^3.0.0"
   }
 }
