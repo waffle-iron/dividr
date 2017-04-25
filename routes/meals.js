@@ -9,4 +9,6 @@ router.post('/', meal_controller.createMeal);
 
 router.get('/:id', meal_controller.getMeal);
 
+router.delete('/:id', meal_controller.deleteMeal);
+
 module.exports = router;

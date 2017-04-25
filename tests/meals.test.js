@@ -122,3 +122,40 @@ describe('GET /meals/:id', () => {
             .end(done);
     });
 });
+
+describe('DELETE /meals/:id', () => {
+    it('should delete a meal', (done) => {
+        let hexId = meals[0]._id.toHexString();
+        request(app)
+            .delete(`/meals/${meals[0]._id.toHexString()}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.meal._id).toBe(hexId);
+            })
+            .end((err) => {
+                if(err) {
+                    return done(err)
+                }
+                Meal.findById(hexId).then((meal) => {
+                    expect(meal).toNotExist();
+                    done();
+                }).catch((e) => done(e));
+            })
+    });
+
+    it('should return a 404 if meal not found', (done) => {
+        let hexId = new ObjectID().toHexString();
+        request(app)
+            .delete(`/meals/${hexId}`)
+            .expect(404)
+            .end(done);
+    });
+
+    it('should return a 404 if malformed id is sent', (done) => {
+        request(app)
+            .delete('/meals/123abc')
+            .expect(404)
+            .end(done);
+    });
+
+});

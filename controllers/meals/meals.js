@@ -45,8 +45,26 @@ let createMeal = (req, res) => {
     });
 };
 
+let deleteMeal = (req, res) => {
+    let id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.sendStatus(404);
+    }
+    Meal.findOneAndRemove({
+        _id : id
+    }).then((meal) => {
+        if(!meal) {
+            return res.sendStatus(404);
+        }
+        res.status(200).send({meal});
+    }).catch((e) => {
+        res.sendStatus(400).send(e);
+    });
+};
+
 module.exports = {
     createMeal,
     listMeals,
-    getMeal
+    getMeal,
+    deleteMeal
 };
