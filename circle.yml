@@ -1,15 +1,12 @@
 machine:
   node:
-    version: v6.2.2
+    version: v7.0.0
 test:
   override:
-    - mocha server/**/*.test.js --reporter mocha-junit-reporter:
+    - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
-          - server/test/server.test.js
-          - server/test/users.test.js
-          - server/test/utils.test.js
-          - server/test/validation.test.js
+          - tests/meals.test.js
         environment:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
 #deployment:
