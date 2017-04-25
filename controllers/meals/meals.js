@@ -1,4 +1,34 @@
+const {ObjectID} = require('mongodb');
+
 const {Meal} = require('./../../models/meal');
+
+let listMeals = (req, res) => {
+    Meal.find({
+
+    }).then((meals) => {
+        res.send(meals)
+    }, (e) => {
+        res.status(400).send(e);
+    });
+};
+
+let getMeal = (req, res) => {
+    let id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.sendStatus(404);
+    }
+    Meal.findOne({
+        _id : id
+    }).then((meal) => {
+        if(!meal) {
+            return res.sendStatus(404);
+        }
+        res.status(200).send({meal})
+    }, () => {
+        res.status(404).send();
+    });
+
+};
 
 let createMeal = (req, res) => {
     let meal = new Meal({
@@ -16,5 +46,7 @@ let createMeal = (req, res) => {
 };
 
 module.exports = {
-    createMeal
+    createMeal,
+    listMeals,
+    getMeal
 };
