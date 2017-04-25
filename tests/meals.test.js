@@ -6,29 +6,11 @@ const {ObjectID} = require('mongodb');
 // Local files
 const app = require('./../app');
 const {Meal} = require('./../models/meal');
+const {meals, populateMeals} = require('./seed/seed');
 
-const meals = [
-    {
-        _id : new ObjectID(),
-        mealName : 'meal 1',
-        cookedWeight : 1000,
-        servings : 5,
-        portionSize : 200
-    },
-    {
-        _id : new ObjectID(),
-        mealName : 'meal 2',
-        cookedWeight : 3000,
-        servings : 5,
-        portionSize : 600
-    }
-];
 
-beforeEach((done) => {
-    Meal.remove({}).then(() => {
-        return Meal.insertMany(meals);
-    }).then(() => done());
-});
+
+beforeEach(populateMeals);
 
 describe('GET /meals', () => {
     it('should get all the meals', (done) => {
