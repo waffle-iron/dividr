@@ -6,21 +6,27 @@ const {ObjectID} = require('mongodb');
 // Local files
 const app = require('./../app');
 const {Meal} = require('./../models/meal');
-const {meals, populateMeals} = require('./seed/seed');
+const {meals, validUsers, populateUsers, populateMeals} = require('./seed/seed');
 
+const {createLoginToken} = require('./test-helpers');
 
 
 beforeEach(populateMeals);
+before(populateUsers);
+
 
 describe('GET /meals', () => {
-    it('should get all the meals', (done) => {
-        request(app)
-            .get('/meals')
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.length).toBe(2);
-            })
-            .end(done);
+    it('should get only the logged in users meals', (done) => {
+        createLoginToken(app, { email: validUsers[0].email, password: 'secret'}, (header) => {
+            request(app)
+                .get('/meals')
+                .set('Authorization', header)
+                .expect(200)
+                .expect((res) => {
+                    expect(res.body.length).toBe(1);
+                })
+                .end(done);
+        });
     });
 });
 

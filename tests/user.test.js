@@ -5,21 +5,9 @@ const bcrypt = require('bcrypt-nodejs');
 const {mongoose} = require('mongoose');
 // Local files
 const app = require('./../app');
-const User = require('./../models/user');
+const {validUsers, validUser2, populateUsers} = require('./seed/seed');
 
-const validUser = [{ password: encryptPassword('secret'), lastName: 'Doe', firstName: 'John', email: 'johndoe@exampledomain.com' },
-                    { password: encryptPassword('secret'), lastName: 'Doe', firstName: 'John', email: 'johndoe2@exampledomain.com' }];
-const validUser2 = { password: encryptPassword('secret'), lastName: 'Doe', firstName: 'John', email: 'johndoe3@exampledomain.com' };
-
-beforeEach((done) => {
-    User.remove({}).then(() => {
-        return User.insertMany(validUser);
-    }).then(() => done());
-});
-
-function encryptPassword  (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-}
+beforeEach(populateUsers);
 
 describe('POST /register', () => {
     it('should FAIL [422] to create a user without parameters', (done) => {
@@ -62,7 +50,7 @@ describe('POST /register', () => {
     it('should FAIL [422] to create a user with occupied email', (done) => {
         request(app)
             .post('/register')
-            .send(validUser[0])
+            .send(validUsers[0])
             .expect(422)
             .end((err, res) => {
                 if (err) done(err);

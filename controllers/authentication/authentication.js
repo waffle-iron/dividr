@@ -26,7 +26,6 @@ function setUserInfo(request) {
 // Login Route
 //========================================
 exports.login = (req, res) => {
-
     let userInfo = setUserInfo(req.user);
     res.status(200).json({
         token: 'JWT ' + generateToken(userInfo),

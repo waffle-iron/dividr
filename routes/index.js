@@ -1,4 +1,4 @@
-require('./../config/passport');
+require ('./../config/passport');
 
 const express = require('express');
 const router = express.Router();
@@ -11,7 +11,7 @@ const requireLogin = passport.authenticate('local', { session: false });
 
 
 /* GET home page. */
-router.get('/', requireAuth, (req, res) => {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 

@@ -21,6 +21,10 @@ let Meal = mongoose.model('Meal', {
         type : Number,
         required : true,
         min : 1
+    },
+    _creator : {
+        required : true,
+        type : mongoose.Schema.Types.ObjectId
     }
 });
 
