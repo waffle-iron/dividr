@@ -10,7 +10,8 @@ function createLoginToken(server, loginDetails, done) {
                 throw error;
             }
             let loginToken = response.body.token;
-            done(loginToken);
+            let userId = response.body.user._id;
+            done(loginToken, userId);
         });
 }
 
