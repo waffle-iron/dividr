@@ -14,6 +14,13 @@ const validLogin = { email: validUsers[0].email, password: 'secret'};
 beforeEach(populateMeals);
 before(populateUsers);
 
+describe('GET /', () => {
+   it('should return a 200 when GET / is called', (done) => {
+       request(app)
+           .get('/api/v1/')
+           .expect(200, done);
+   });
+});
 
 describe('GET /meals', () => {
     it('should get only the logged in users meals', (done) => {
