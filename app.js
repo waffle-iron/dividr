@@ -32,8 +32,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/meals', meals);
+app.use('/api/v1', index);
+app.use('/api/v1/meals', meals);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

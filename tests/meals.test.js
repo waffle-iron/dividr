@@ -19,7 +19,7 @@ describe('GET /meals', () => {
     it('should get only the logged in users meals', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .get('/meals')
+                .get('/api/v1/meals')
                 .set('Authorization', header)
                 .expect(200)
                 .expect((res) => {
@@ -39,7 +39,7 @@ describe('POST /meals', () => {
 
         createLoginToken(app, validLogin, (header, userId) => {
             request(app)
-                .post('/meals')
+                .post('/api/v1/meals')
                 .set('Authorization', header)
                 .send({
                     mealName,
@@ -73,7 +73,7 @@ describe('POST /meals', () => {
         let servings = 5;
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .post('/meals')
+                .post('/api/v1/meals')
                 .set('Authorization', header)
                 .send({
                     mealName,
@@ -87,7 +87,7 @@ describe('POST /meals', () => {
     it('should not create a meal with no data sent', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .post('/meals')
+                .post('/api/v1/meals')
                 .set('Authorization', header)
                 .send()
                 .expect(400, done);
@@ -99,7 +99,7 @@ describe('GET /meals/:id', () => {
     it('should return a specific meal', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .get(`/meals/${meals[0]._id.toHexString()}`)
+                .get(`/api/v1/meals/${meals[0]._id.toHexString()}`)
                 .set('Authorization', header)
                 .expect(200)
                 .expect((res) => {
@@ -111,7 +111,7 @@ describe('GET /meals/:id', () => {
     it('should return a 404 if not found', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .get('/meals/asd')
+                .get('/api/v1/meals/asd')
                 .set('Authorization', header)
                 .expect(404)
                 .end(done);
@@ -122,7 +122,7 @@ describe('GET /meals/:id', () => {
 
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .get(`/meals/${hexId}`)
+                .get(`/api/v1/meals/${hexId}`)
                 .set('Authorization', header)
                 .expect(404)
                 .end(done);
@@ -135,7 +135,7 @@ describe('DELETE /meals/:id', () => {
         let hexId = meals[0]._id.toHexString();
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .delete(`/meals/${meals[0]._id.toHexString()}`)
+                .delete(`/api/v1/meals/${meals[0]._id.toHexString()}`)
                 .set('Authorization', header)
                 .expect(200)
                 .expect((res) => {
@@ -157,7 +157,7 @@ describe('DELETE /meals/:id', () => {
         let hexId = new ObjectID().toHexString();
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .delete(`/meals/${hexId}`)
+                .delete(`/api/v1/meals/${hexId}`)
                 .set('Authorization', header)
                 .expect(404)
                 .end(done);
@@ -167,7 +167,7 @@ describe('DELETE /meals/:id', () => {
     it('should return a 404 if malformed id is sent', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .delete('/meals/123abc')
+                .delete('/api/v1/meals/123abc')
                 .set('Authorization', header)
                 .expect(404)
                 .end(done);
@@ -183,7 +183,7 @@ describe('PATCH /meals/:id', () => {
         let servings = 2;
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .patch(`/meals/${id}`)
+                .patch(`/api/v1/meals/${id}`)
                 .set('Authorization', header)
                 .send({
                     mealName,
@@ -204,7 +204,7 @@ describe('PATCH /meals/:id', () => {
         let mealName = 'Testing update route';
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .patch(`/meals/${id}`)
+                .patch(`/api/v1/meals/${id}`)
                 .set('Authorization', header)
                 .send({ mealName })
                 .expect(404)
@@ -215,7 +215,7 @@ describe('PATCH /meals/:id', () => {
     it('should return a 404 if malformed id is sent', (done) => {
         createLoginToken(app, validLogin, (header) => {
             request(app)
-                .patch('/meals/123abc')
+                .patch('/api/v1/meals/123abc')
                 .set('Authorization', header)
                 .expect(404)
                 .end(done);

@@ -4,7 +4,7 @@ const request = require('supertest');
 function createLoginToken(server, loginDetails, done) {
     request(server)
         // POST request to /login
-        .post('/login')
+        .post('/api/v1/login')
         // Send valid user loginDetails
         .send(loginDetails)
         .end(function(error, response) {
