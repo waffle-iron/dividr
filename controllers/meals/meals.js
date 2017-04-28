@@ -5,12 +5,13 @@ const {Meal} = require('./../../models/meal');
 
 let listMeals = (req, res) => {
     Meal.find({
-
+        _creator: req.user._id
     }).then((meals) => {
         res.send(meals)
     }, (e) => {
         res.status(400).send(e);
     });
+
 };
 
 let getMeal = (req, res) => {
@@ -36,7 +37,8 @@ let createMeal = (req, res) => {
         mealName : req.body.mealName,
         cookedWeight : req.body.cookedWeight,
         servings : req.body.servings,
-        portionSize: req.body.cookedWeight / req.body.servings
+        portionSize : req.body.cookedWeight / req.body.servings,
+        _creator : req.user._id
     });
 
     meal.save().then((doc) => {
@@ -77,6 +79,7 @@ let updateMeal = (req, res) => {
         }
         res.status(200).send({meal});
     }).catch((e) => {
+        console.log(e);
         res.status(400).send(e);
     })
 };

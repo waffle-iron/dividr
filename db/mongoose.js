@@ -6,4 +6,4 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect(mongodb_uri);
 
-module.exports = { mongoose };
+module.exports = {mongoose};

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-let Meal = mongoose.model('Meal', {
+const MealSchema = new Schema({
     mealName : {
         type : String,
         required : true,
@@ -21,7 +22,24 @@ let Meal = mongoose.model('Meal', {
         type : Number,
         required : true,
         min : 1
+    },
+    _creator : {
+        required : true,
+        type : mongoose.Schema.Types.ObjectId
     }
 });
+
+MealSchema.pre('save', function (next) {
+    this.portionSize = this.cookedWeight / this.servings;
+    next();
+});
+
+MealSchema.post('findOneAndUpdate', function (result) {
+    if(result) {
+        result.portionSize = result.cookedWeight / result.servings;
+    }
+});
+
+const Meal = mongoose.model('Meal', MealSchema);
 
 module.exports = {Meal};
