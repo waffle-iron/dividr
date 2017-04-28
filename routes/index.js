@@ -12,7 +12,7 @@ const requireLogin = passport.authenticate('local', { session: false });
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Express' });
+  res.send('Welcome to the app');
 });
 
 // Registration route
