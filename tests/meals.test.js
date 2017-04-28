@@ -180,16 +180,20 @@ describe('PATCH /meals/:id', () => {
     it('should update a meal if a valid request is sent', (done) => {
         let id = meals[0]._id.toHexString();
         let mealName = 'Testing update route';
+        let servings = 2;
         createLoginToken(app, validLogin, (header) => {
             request(app)
                 .patch(`/meals/${id}`)
                 .set('Authorization', header)
                 .send({
-                    mealName
+                    mealName,
+                    servings
                 })
                 .expect(200)
                 .expect((res) => {
                     expect(res.body.meal.mealName).toBe(mealName);
+                    expect(res.body.meal.servings).toBe(servings);
+                    expect(res.body.meal.portionSize).toBe(500);
                 })
                 .end(done);
         });
