@@ -29,14 +29,9 @@ const MealSchema = new Schema({
     }
 });
 
-MealSchema.pre('save', function (next) {
-    this.portionSize = this.cookedWeight / this.servings;
-    next();
-});
-
 MealSchema.post('findOneAndUpdate', function (result) {
     if(result) {
-        result.portionSize = result.cookedWeight / result.servings;
+        result.portionSize = Math.floor(result.cookedWeight / result.servings);
     }
 });
 

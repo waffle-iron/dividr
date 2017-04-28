@@ -110,3 +110,18 @@ describe('POST /login', () => {
             });
     });
 });
+
+describe('GET /logout', () => {
+    it('should LOGOUT when requested', (done) => {
+        request(app)
+            .get('/api/v1/logout')
+            .expect(200)
+            .end((err, res) => {
+                if(err) {
+                    return done(err);
+                }
+                expect(res.user).toNotExist();
+                done();
+            });
+    });
+});

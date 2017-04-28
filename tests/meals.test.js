@@ -100,6 +100,38 @@ describe('POST /meals', () => {
                 .expect(400, done);
         });
     });
+
+    it('should not create decimal portion sizes', (done) => {
+       let mealName = 'Casserole';
+       let cookedWeight = 769;
+       let servings = 2;
+       let expectedPortionSize = 384;
+
+       createLoginToken(app, validLogin, (header) => {
+           request(app)
+               .post('/api/v1/meals')
+               .set('Authorization', header)
+               .send({
+                   mealName,
+                   cookedWeight,
+                   servings
+               })
+               .expect(200)
+               .expect((res) => {
+                   expect(res.body.portionSize).toBe(expectedPortionSize);
+               })
+               .end((err) => {
+                   if (err) {
+                       return done(err);
+                   }
+                   Meal.find({mealName}).then((meals) => {
+                       expect(meals.length).toBe(1);
+                       expect(meals[0].mealName).toBe(mealName);
+                       done();
+                   }).catch((e) => done(e))
+               });
+       });
+    });
 });
 
 describe('GET /meals/:id', () => {
@@ -225,6 +257,28 @@ describe('PATCH /meals/:id', () => {
                 .patch('/api/v1/meals/123abc')
                 .set('Authorization', header)
                 .expect(404)
+                .end(done);
+        });
+    });
+
+    it('should not update decimal portion sizes', (done) => {
+        let id = meals[1]._id.toHexString();
+        let mealName = 'Testing update route';
+        let servings = 7;
+        createLoginToken(app, validLogin, (header) => {
+            request(app)
+                .patch(`/api/v1/meals/${id}`)
+                .set('Authorization', header)
+                .send({
+                    mealName,
+                    servings
+                })
+                .expect(200)
+                .expect((res) => {
+                    expect(res.body.meal.mealName).toBe(mealName);
+                    expect(res.body.meal.servings).toBe(servings);
+                    expect(res.body.meal.portionSize).toBe(428);
+                })
                 .end(done);
         });
     });

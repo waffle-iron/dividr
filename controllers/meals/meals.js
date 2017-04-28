@@ -37,7 +37,7 @@ let createMeal = (req, res) => {
         mealName : req.body.mealName,
         cookedWeight : req.body.cookedWeight,
         servings : req.body.servings,
-        portionSize : req.body.cookedWeight / req.body.servings,
+        portionSize : Math.floor(req.body.cookedWeight / req.body.servings),
         _creator : req.user._id
     });
 
