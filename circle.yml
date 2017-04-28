@@ -13,8 +13,8 @@ test:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
   post:
       - bash <(curl -s https://codecov.io/bash)
-#deployment:
-#  staging:
-#    branch: master
-#    heroku:
-#      appname: stormy-beach-70821 # appname must not include upper-case characters
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: dividr-staging # appname must not include upper-case characters
