@@ -1,0 +1,20 @@
+machine:
+  node:
+    version: v7.0.0
+test:
+  pre:
+    - npm run report-coverage
+  override:
+    - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
+        parallel: true
+        files:
+          - tests/meals.test.js
+        environment:
+          MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
+  post:
+      - bash <(curl -s https://codecov.io/bash)
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: dividr-staging # appname must not include upper-case characters

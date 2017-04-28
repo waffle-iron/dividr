@@ -1,13 +1,16 @@
+require('./config/config');
+require('./db/mongoose');
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const sassMiddleware = require('node-sass-middleware');
 
+const sassMiddleware = require('node-sass-middleware');
 const index = require('./routes/index');
-const users = require('./routes/users');
+const meals = require('./routes/meals');
 
 let app = express();
 
@@ -29,8 +32,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/api/v1', index);
+app.use('/api/v1/meals', meals);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -40,7 +43,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
