@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 require('./../config/config');
+
+// Requiring new relic
+require('newrelic');
 /**
  * Module dependencies.
  */
