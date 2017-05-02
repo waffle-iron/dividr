@@ -12,6 +12,7 @@ const meals = require('./routes/meals');
 
 let app = express();
 
+app.disable('x-powered-by');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
