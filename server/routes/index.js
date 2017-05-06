@@ -12,7 +12,7 @@ const requireLogin = passport.authenticate('local', { session: false });
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.send('Welcome to the app');
+  res.send({message: 'This is live from the API'});
 });
 
 // Registration route

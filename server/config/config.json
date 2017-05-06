@@ -1,0 +1,18 @@
+{
+  "test" : {
+    "PORT": 3002,
+    "MONGODB_URI" : "mongodb://127.0.0.1:27017/MealAppTest",
+    "SESSION_SECRET" : "adasdsdqwwdbwjkfjfajfbakwabfeub",
+    "NEW_RELIC_NO_CONFIG_FILE" : true,
+    "NEW_RELIC_APP_NAME" : "dividr-test",
+    "NEW_RELIC_LICENSE_KEY" : "2893776f5df980c7329a4d96910bba4f141f5aa4"
+  },
+  "development" : {
+    "PORT": 3001,
+    "MONGODB_URI" : "mongodb://127.0.0.1:27017/MealApp",
+    "SESSION_SECRET" : "ajshdkbasjdhsbfdwukfbuwegvwub",
+    "NEW_RELIC_NO_CONFIG_FILE" : true,
+    "NEW_RELIC_APP_NAME" : "dividr-dev",
+    "NEW_RELIC_LICENSE_KEY" : "2893776f5df980c7329a4d96910bba4f141f5aa4"
+  }
+}
