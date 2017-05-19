@@ -7,7 +7,14 @@ let listMeals = (req, res) => {
     Meal.find({
         _creator: req.user._id
     }).then((meals) => {
-        res.send(meals)
+        res.json(
+            {
+                user : {
+                    meals,
+                    profile: req.user.profile
+                }
+            }
+        )
     }, (e) => {
         res.status(400).send(e);
     });
