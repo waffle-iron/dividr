@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {browserHistory, Router} from 'react-router';
-import routes from './routes'
+import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 
 import Main from 'Components/Main';
-import MealList from 'Components/Meallist';
+import HomePage from 'Components/HomePage';
+import LoginPage from 'Components/LoginPage';
+import LogoutPage from 'Components/LogoutPage';
+import SignUpPage from 'Components/SignUpPage';
 
-injectTapEventPlugin();
+require('style-loader!css-loader!sass-loader!./styles/app.scss');
 
 ReactDOM.render(
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Router history={browserHistory} routes={routes} />
-    </MuiThemeProvider>,
+    <Router history={browserHistory} >
+        <Route path="/" component={Main} >
+            <Route path="/logout" component={LogoutPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignUpPage} />
+            <IndexRoute component={HomePage} />
+        </Route>
+    </Router>,
     document.getElementById('root'));

@@ -1,9 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-
 
 const LoginForm = ({
                        onSubmit,
@@ -12,41 +9,29 @@ const LoginForm = ({
                        successMessage,
                        user
                    }) => (
-    <Card className="container">
         <form action="/" onSubmit={onSubmit}>
-            <h2 className="card-heading">Login</h2>
+            <h2>Log In</h2>
 
-            {successMessage && <p className="success-message">{successMessage}</p>}
-            {errors.summary && <p className="error-message">{errors.summary}</p>}
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Email"
-                    name="email"
-                    errorText={errors.email}
-                    onChange={onChange}
-                    value={user.email}
-                />
+            {successMessage && <p>{successMessage}</p>}
+            {errors.summary && <p>{errors.summary}</p>}
+
+            <div>
+                <label htmlFor="email">E-mail:</label>
+                <input type="text" name="email" onChange={onChange} />
             </div>
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Password"
-                    type="password"
-                    name="password"
-                    onChange={onChange}
-                    errorText={errors.password}
-                    value={user.password}
-                />
+            <div>
+                <label htmlFor="password">Password:</label>
+                <input type="password" name="password" onChange={onChange}/>
             </div>
 
-            <div className="button-line">
-                <RaisedButton type="submit" label="Log in" primary />
+            <div>
+                <button type="submit" label="Log in">Log In</button>
             </div>
 
-            <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+            Don't have an account? <Link to={'/signup'}>Create one</Link>.
         </form>
-    </Card>
 );
 
 LoginForm.propTypes = {

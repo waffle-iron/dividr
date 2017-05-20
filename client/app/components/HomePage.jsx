@@ -1,0 +1,15 @@
+import React from 'react'
+
+class HomePage extends React.Component {
+    render () {
+        return (
+            <div>
+                <h1>
+                    Welcome to Dividr
+                </h1>
+            </div>
+        )
+    }
+}
+
+export default HomePage

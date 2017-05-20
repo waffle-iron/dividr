@@ -7,8 +7,12 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <Header className="header" />
-                {this.props.children}
+                <Header />
+                <div className="row">
+                    <div className="small-centered medium-6 large-4 column">
+                        {this.props.children}
+                    </div>
+                </div>
             </div>
         )
     }

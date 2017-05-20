@@ -1,7 +1,7 @@
 import Main from 'Components/Main'
 import MealList from 'Components/MealList'
 
-import LoginPage from 'Components/LoginPage'
+import HomePage from 'Components/LoginPage'
 import SignUpPage from 'Components/SignUpPage'
 
 import Auth from './modules/Auth';
@@ -17,7 +17,8 @@ const routes = {
                 if (Auth.isUserAuthenticated()) {
                     callback(null, MealList);
                 } else {
-                    callback(null, LoginPage);
+                    console.log('Not logged in');
+                    callback(null, HomePage);
                 }
             }
         },

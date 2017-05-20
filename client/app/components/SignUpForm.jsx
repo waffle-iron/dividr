@@ -1,9 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'
 import { Link } from 'react-router';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-
 
 const SignUpForm = ({
                         onSubmit,
@@ -11,60 +8,38 @@ const SignUpForm = ({
                         errors,
                         user,
                     }) => (
-    <Card className="container">
+
         <form action="/" onSubmit={onSubmit}>
-            <h2 className="card-heading">Sign Up</h2>
+            <h2>Sign Up</h2>
 
-            {errors.summary && <p className="error-message">{errors.summary}</p>}
+            {errors.summary && <p>{errors.summary}</p>}
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="First Name"
-                    name="firstName"
-                    errorText={errors.name}
-                    onChange={onChange}
-                    value={user.firstName}
-                />
+            <div>
+                <label htmlFor="firstName">First Name:</label>
+                <input type="text" name="firstName" onChange={onChange} />
             </div>
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Last Name"
-                    name="lastName"
-                    errorText={errors.name}
-                    onChange={onChange}
-                    value={user.lastName}
-                />
+            <div>
+                <label htmlFor="lastName">Last Name:</label>
+                <input type="text" name="lastName" onChange={onChange}/>
             </div>
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Email"
-                    name="email"
-                    errorText={errors.email}
-                    onChange={onChange}
-                    value={user.email}
-                />
+            <div>
+                <label htmlFor="email">E-mail:</label>
+                <input type="text" name="email" onChange={onChange}/>
             </div>
 
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Password"
-                    type="password"
-                    name="password"
-                    onChange={onChange}
-                    errorText={errors.password}
-                    value={user.password}
-                />
+            <div>
+                <label htmlFor="password">Password:</label>
+                <input type="password" name="password" onChange={onChange}/>
             </div>
 
-            <div className="button-line">
-                <RaisedButton type="submit" label="Create New Account" primary />
+            <div>
+                <button type="submit">Create New Account</button>
             </div>
 
-            <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
+            <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
         </form>
-    </Card>
 );
 
 SignUpForm.propTypes = {
