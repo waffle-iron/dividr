@@ -1,6 +1,5 @@
 const request  = require('supertest');
 const expect = require('expect');
-const bcrypt = require('bcrypt-nodejs');
 
 const {mongoose} = require('mongoose');
 // Local files

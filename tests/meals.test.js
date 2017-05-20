@@ -30,7 +30,7 @@ describe('GET /meals', () => {
                 .set('Authorization', header)
                 .expect(200)
                 .expect((res) => {
-                    expect(res.body.length).toBe(1);
+                    expect(res.body.user.meals.length).toBe(1);
                 })
                 .end(done);
         });
