@@ -9,6 +9,7 @@ class Header extends React.Component {
                 if(Auth.isUserAuthenticated()) {
                     return (
                     <ul className="menu">
+                        <li><Link to="/meallist">Meal List</Link></li>
                         <li><Link to='/logout'>Log out</Link></li>
                     </ul>
                     )

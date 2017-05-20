@@ -9,27 +9,25 @@ const LoginForm = ({
                        successMessage,
                        user
                    }) => (
-                           <form action="/" onSubmit={onSubmit}>
+        <div className="form-registration">
+            <figure className="form-registration-img">
+                <img src="https://images.pexels.com/photos/221205/pexels-photo-221205.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
+                <figcaption className="form-registration-img-caption">Login</figcaption>
+            </figure>
+           <form className="form-registration-group" action="/" onSubmit={onSubmit}>
 
-                            {successMessage && <p>{successMessage}</p>}
-                            {errors.summary && <p>{errors.summary}</p>}
-                            <h4>Log In</h4>
-                            <div>
-                                <label htmlFor="email">E-mail:</label>
-                                <input type="text" id="email" name="email" onChange={onChange} />
-                            </div>
 
-                            <div>
-                                <label htmlFor="password">Password:</label>
-                                <input type="password" id="password" name="password" onChange={onChange}/>
-                            </div>
+                <label htmlFor="email">E-mail:</label>
+                <input className="form-registration-input" type="text" id="email" name="email" onChange={onChange} />
 
-                            <div>
-                                <button type="submit" id="loginButton" className="button">Log In</button>
-                            </div>
+                <label htmlFor="password">Password:</label>
+                <input className="form-registration-input" type="password" id="password" name="password" onChange={onChange}/>
 
-                            Don't have an account? <Link to={'/signup'}>Create one</Link>.
-                           </form>
+                <button type="submit" id="loginButton" className="button form-registration-submit-button">Log In</button>
+
+               <p>Don't have an account? <Link to={'/signup'}>Create one</Link>.</p>
+           </form>
+        </div>
 );
 
 LoginForm.propTypes = {

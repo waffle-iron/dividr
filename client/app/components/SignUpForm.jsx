@@ -8,38 +8,30 @@ const SignUpForm = ({
                         errors,
                         user,
                     }) => (
+    <div className="form-registration">
+        <figure className="form-registration-img">
+            <img src="https://images.pexels.com/photos/221205/pexels-photo-221205.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
+            <figcaption className="form-registration-img-caption">Sign up</figcaption>
+        </figure>
 
-        <form action="/" onSubmit={onSubmit}>
-            <h2>Sign Up</h2>
-
-            {errors.summary && <p>{errors.summary}</p>}
-
-            <div>
+        <form className="form-registration-group" action="/" onSubmit={onSubmit}>
                 <label htmlFor="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" onChange={onChange} />
-            </div>
+                <input className="form-registration-input" type="text" id="firstName" name="firstName" onChange={onChange} />
 
-            <div>
                 <label htmlFor="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" onChange={onChange}/>
-            </div>
+                <input className="form-registration-input" type="text" id="lastName" name="lastName" onChange={onChange}/>
 
-            <div>
                 <label htmlFor="email">E-mail:</label>
-                <input type="text" id="email" name="email" onChange={onChange}/>
-            </div>
+                <input className="form-registration-input" type="text" id="email" name="email" onChange={onChange}/>
 
-            <div>
                 <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" onChange={onChange}/>
-            </div>
+                <input className="form-registration-input" type="password" id="password" name="password" onChange={onChange}/>
 
-            <div>
-                <button type="submit" className="button">Create New Account</button>
-            </div>
+                <button type="submit" className="button form-registration-submit-button">Create New Account</button>
 
             <p>Already have an account? <Link to='/login'>Log in</Link></p>
         </form>
+    </div>
 );
 
 SignUpForm.propTypes = {

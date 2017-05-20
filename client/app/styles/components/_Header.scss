@@ -1,0 +1,13 @@
+.top-bar {
+  background-color: $brand-color;
+  .menu {
+    background-color: $brand-color;
+    color: white;
+
+    li {
+      a {
+        color: white;
+      }
+    }
+  }
+}
