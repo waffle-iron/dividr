@@ -2,9 +2,8 @@ import React from 'react'
 import {Link} from 'react-router'
 import Auth from '../modules/Auth'
 
-import LoginPage from 'Components/LoginPage';
-
 class Header extends React.Component {
+
         render() {
             const rightButtons = () => {
                 if(Auth.isUserAuthenticated()) {
@@ -16,7 +15,7 @@ class Header extends React.Component {
                 } else {
                     return (
                         <ul className="menu">
-                            <li><Link to='/login'>Log in</Link></li>
+                            <li><Link to="/login">Log in</Link></li>
                             <li><Link to='/signup'>Sign Up</Link></li>
                         </ul>
                     )

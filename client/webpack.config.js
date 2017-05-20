@@ -15,12 +15,17 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    entry: ['./app/App.jsx', './app/styles/app.scss'],
+    entry: [
+        './app/App.jsx',
+        './app/styles/app.scss',
+        'script-loader!jquery/dist/jquery.min.js',
+        'script-loader!foundation-sites/dist/js/foundation.js'
+    ],
     externals: {
-        jquery: 'jQuery'
+        foundation: 'Foundation'
     },
     output: {
-        path: path.resolve('dist'),
+        path: path.resolve('public'),
         filename: 'app_bundle.js'
     },
     module: {

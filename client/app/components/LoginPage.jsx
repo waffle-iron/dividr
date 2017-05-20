@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import LoginForm from './LoginForm.jsx';
 
@@ -55,7 +56,7 @@ class LoginPage extends React.Component {
                 })
             .then((response) => {
                 Auth.authenticateUser(response.data.token);
-                this.context.router.replace('/');
+                this.context.router.replace('/meallist');
             })
             .catch(function (error) {
                 console.log(error);

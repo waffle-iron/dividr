@@ -9,29 +9,27 @@ const LoginForm = ({
                        successMessage,
                        user
                    }) => (
-        <form action="/" onSubmit={onSubmit}>
-            <h2>Log In</h2>
+                           <form action="/" onSubmit={onSubmit}>
 
+                            {successMessage && <p>{successMessage}</p>}
+                            {errors.summary && <p>{errors.summary}</p>}
+                            <h4>Log In</h4>
+                            <div>
+                                <label htmlFor="email">E-mail:</label>
+                                <input type="text" id="email" name="email" onChange={onChange} />
+                            </div>
 
-            {successMessage && <p>{successMessage}</p>}
-            {errors.summary && <p>{errors.summary}</p>}
+                            <div>
+                                <label htmlFor="password">Password:</label>
+                                <input type="password" id="password" name="password" onChange={onChange}/>
+                            </div>
 
-            <div>
-                <label htmlFor="email">E-mail:</label>
-                <input type="text" name="email" onChange={onChange} />
-            </div>
+                            <div>
+                                <button type="submit" id="loginButton" className="button">Log In</button>
+                            </div>
 
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={onChange}/>
-            </div>
-
-            <div>
-                <button type="submit" label="Log in">Log In</button>
-            </div>
-
-            Don't have an account? <Link to={'/signup'}>Create one</Link>.
-        </form>
+                            Don't have an account? <Link to={'/signup'}>Create one</Link>.
+                           </form>
 );
 
 LoginForm.propTypes = {

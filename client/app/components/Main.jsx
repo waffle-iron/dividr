@@ -8,7 +8,7 @@ class Main extends React.Component {
         return (
             <div>
                 <Header />
-                <div className="row">
+                <div className="row content">
                     <div className="small-centered medium-6 large-4 column">
                         {this.props.children}
                     </div>

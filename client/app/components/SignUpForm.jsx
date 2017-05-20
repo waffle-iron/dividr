@@ -16,29 +16,29 @@ const SignUpForm = ({
 
             <div>
                 <label htmlFor="firstName">First Name:</label>
-                <input type="text" name="firstName" onChange={onChange} />
+                <input type="text" id="firstName" name="firstName" onChange={onChange} />
             </div>
 
             <div>
                 <label htmlFor="lastName">Last Name:</label>
-                <input type="text" name="lastName" onChange={onChange}/>
+                <input type="text" id="lastName" name="lastName" onChange={onChange}/>
             </div>
 
             <div>
                 <label htmlFor="email">E-mail:</label>
-                <input type="text" name="email" onChange={onChange}/>
+                <input type="text" id="email" name="email" onChange={onChange}/>
             </div>
 
             <div>
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={onChange}/>
+                <input type="password" id="password" name="password" onChange={onChange}/>
             </div>
 
             <div>
-                <button type="submit">Create New Account</button>
+                <button type="submit" className="button">Create New Account</button>
             </div>
 
-            <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
+            <p>Already have an account? <Link to='/login'>Log in</Link></p>
         </form>
 );
 
