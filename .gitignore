@@ -98,3 +98,4 @@ fabric.properties
 .idea/
 
 newrelic_agent.log
+yarn.lock

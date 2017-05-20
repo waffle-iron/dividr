@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 
 import Meal from 'Components/Meal';
+import Auth from '../modules/Auth';
 
 
 class MealList extends React.Component {
@@ -21,7 +22,7 @@ class MealList extends React.Component {
             axios
                 .get('/api/v1/meals', {
                     headers: {
-                        "Authorization" : 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OTBlNjRmZTQ4ZTU0ZjQyY2FkNjYwMzkiLCJmaXJzdE5hbWUiOiJDaHJpcyIsImxhc3ROYW1lIjoiR3JheSIsImVtYWlsIjoidGVzdDJAZXhhbXBsZS5jb20iLCJpYXQiOjE0OTUyNjk2OTgsImV4cCI6MTQ5NTI3OTc3OH0.y2E7QBenZeF20WQNMa8gKcphMS4x8sua_hJxMLKmtXo'
+                        "Authorization" : `${Auth.getToken()}`
                     }
                 })
                 .then((result) => {
