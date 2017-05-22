@@ -9,6 +9,10 @@ module.exports = function (config) {
             'node_modules/jquery/dist/jquery.min.js',
             './tests/**/*.test.jsx'
         ],
+        plugins : [
+            'karma-webpack',
+            'karma-sourcemap-loader'
+        ],
         preprocessors : {
             './tests/**/*.test.jsx' : ['webpack', 'sourcemap']
         },
