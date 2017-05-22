@@ -11,7 +11,7 @@ const SignUpForm = ({
     <div className="form-registration">
         <figure className="form-registration-img">
             <img src="https://images.pexels.com/photos/221205/pexels-photo-221205.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
-            <figcaption className="form-registration-img-caption">Sign up</figcaption>
+            <figcaption className="form-registration-img-caption form-title">Sign up</figcaption>
         </figure>
 
         <form className="form-registration-group" action="/" onSubmit={onSubmit}>

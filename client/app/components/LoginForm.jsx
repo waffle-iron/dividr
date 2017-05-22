@@ -12,7 +12,7 @@ const LoginForm = ({
         <div className="form-registration">
             <figure className="form-registration-img">
                 <img src="https://images.pexels.com/photos/221205/pexels-photo-221205.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
-                <figcaption className="form-registration-img-caption">Login</figcaption>
+                <figcaption className="form-registration-img-caption form-title">Login</figcaption>
             </figure>
            <form className="form-registration-group" action="/" onSubmit={onSubmit}>
 

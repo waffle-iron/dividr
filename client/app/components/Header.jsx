@@ -27,7 +27,7 @@ class Header extends React.Component {
                 <div className="top-bar">
                     <div className="top-bar-left">
                         <ul className="dropdown menu">
-                            <li className="menu-text">Dividr</li>
+                            <li className="menu-text app-title">Dividr</li>
                         </ul>
                     </div>
                     <div className="top-bar-right">

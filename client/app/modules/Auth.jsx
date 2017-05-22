@@ -1,3 +1,7 @@
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 class Auth {
 
     /**
@@ -6,7 +10,8 @@ class Auth {
      * @param {string} token
      */
     static authenticateUser(token) {
-        localStorage.setItem('token', token);
+        cookies.set('Authorization', token, {path: '/', maxAge: 10080});
+        //localStorage.setItem('token', token);
     }
 
     /**
@@ -15,7 +20,8 @@ class Auth {
      * @returns {boolean}
      */
     static isUserAuthenticated() {
-        return localStorage.getItem('token') !== null;
+        return cookies.get('Authorization') !== undefined;
+        //return localStorage.getItem('token') !== null;
     }
 
     /**
@@ -23,7 +29,8 @@ class Auth {
      *
      */
     static deauthenticateUser() {
-        localStorage.removeItem('token');
+        cookies.remove('Authorization');
+        //localStorage.removeItem('token');
     }
 
     /**
@@ -33,7 +40,8 @@ class Auth {
      */
 
     static getToken() {
-        return localStorage.getItem('token');
+        return cookies.get('Authorization');
+        //return localStorage.getItem('token');
     }
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
 import Header from 'Components/Header';
 
@@ -19,4 +19,5 @@ describe('Header', () => {
             expect(actualText).toBe('Dividr');
         });
     })
+
 });

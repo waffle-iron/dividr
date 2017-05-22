@@ -84,15 +84,15 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className="row">
-            <div className="column small-centered medium-4 large-5">
-                <LoginForm
-                    onSubmit={this.processForm}
-                    onChange={this.changeUser}
-                    errors={this.state.errors}
-                    successMessage={this.state.successMessage}
-                    user={this.state.user}
-                />
-            </div>
+                <div className="column small-centered medium-4 large-5">
+                    <LoginForm
+                        onSubmit={this.processForm}
+                        onChange={this.changeUser}
+                        errors={this.state.errors}
+                        successMessage={this.state.successMessage}
+                        user={this.state.user}
+                    />
+                </div>
             </div>
         );
     }

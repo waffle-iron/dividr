@@ -30,12 +30,10 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract({
-                loader: 'css-loader?importLoaders=1'
-            })},
-            { test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])}
+            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.jsx$/, use: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader?importLoaders=1'})},
+            { test: /\.(sass|scss)$/, use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])}
         ]
     },
     plugins: [

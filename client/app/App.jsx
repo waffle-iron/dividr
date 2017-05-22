@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Router, IndexRoute, browserHistory} from 'react-router';
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 import Main from 'Components/Main';
 import HomePage from 'Components/HomePage';
@@ -14,7 +14,7 @@ import 'script-loader!foundation-sites'
 import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
 ReactDOM.render(
-    <Router history={browserHistory} >
+    <Router history={hashHistory} >
         <Route path="/" component={Main} >
             <Route path="/logout" component={LogoutPage} />
             <Route path="/login" component={LoginPage} />
