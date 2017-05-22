@@ -8,7 +8,8 @@ test:
     - cd client && npm install && ./node_modules/karma/bin/karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters junit:
         parallel: true
         environment:
-          KARMA_FILE: $CIRCLE_TEST_REPORTS/karma/junit/test-results.xml
+          JUNIT_REPORT_PATH: $CIRCLE_TEST_REPORTS/junit/
+          JUNIT_REPORT_NAME: test-results.xml
     - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
