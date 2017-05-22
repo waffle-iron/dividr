@@ -12,7 +12,12 @@ module.exports = function (config) {
         preprocessors : {
             './tests/**/*.test.jsx' : ['webpack', 'sourcemap']
         },
-        reporters : ['mocha'],
+        reporters : ['mocha', 'junit'],
+        junitReporter: {
+            outputDir: process.env.JUNIT_REPORT_PATH,
+            outputFile: process.env.JUNIT_REPORT_NAME,
+            useBrowserName: false
+        },
         client : {
             mocha : {
                 timeout : '5000'

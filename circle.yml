@@ -1,11 +1,16 @@
 machine:
   node:
     version: v7.0.0
+dependencies:
+  pre:
+    - npm install -g karma
+  cache_directories:
+    - ~/nvm
 test:
   pre:
     - npm run report-coverage
   override:
-    - mocha client/tests/**/*.test.js --reporter mocha-junit-reporter:
+    - karma start ./client/karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
     - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
