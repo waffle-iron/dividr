@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import expect from 'expect';
 import TestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
-import Homepage from 'Components/Homepage';
+import Homepage from 'Components/HomePage';
 
 describe('Homepage', () => {
     it('should exist', () => {

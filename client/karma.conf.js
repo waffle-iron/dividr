@@ -10,15 +10,18 @@ module.exports = function (config) {
             './tests/**/*.test.jsx'
         ],
         plugins : [
+            'karma-chrome-launcher',
             'karma-junit-reporter',
             'karma-mocha',
+            'karma-mocha-reporter',
+            'karma-phantomjs-launcher',
             'karma-sourcemap-loader',
             'karma-webpack'
         ],
         preprocessors : {
             './tests/**/*.test.jsx' : ['webpack', 'sourcemap']
         },
-        reporters : ['mocha', 'junit'],
+        reporters : ['mocha'],
         junitReporter: {
             outputDir: process.env.JUNIT_REPORT_PATH,
             outputFile: process.env.JUNIT_REPORT_NAME,

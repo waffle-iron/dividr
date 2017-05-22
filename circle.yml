@@ -5,15 +5,17 @@ test:
   pre:
     - npm run report-coverage
   override:
-    - cd client && npm install && ./node_modules/karma/bin/karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
+    - cd client && npm install && ./node_modules/karma/bin/karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters junit:
+        parallel: true
+        environment:
+          KARMA_FILE: $CIRCLE_TEST_REPORTS/karma/junit/test-results.xml
     - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
           - tests/meals.test.js
-          - client/tests/**/*.test.js
         environment:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
-          KARMA_FILE: $CIRCLE_TEST_REPORTS/karma/junit/test-results.xml
+
   post:
       - bash <(curl -s https://codecov.io/bash)
 deployment:
