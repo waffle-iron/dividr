@@ -9,7 +9,7 @@ test:
   pre:
     - npm run report-coverage
   override:
-    - karma start ./client/karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
+    - cd client && karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
     - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
@@ -17,6 +17,7 @@ test:
           - client/tests/**/*.test.js
         environment:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
+          KARAM_FILE:
   post:
       - bash <(curl -s https://codecov.io/bash)
 deployment:
