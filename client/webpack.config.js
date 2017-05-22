@@ -18,11 +18,13 @@ module.exports = {
     entry: [
         './app/App.jsx',
         './app/styles/app.scss',
-        'script-loader!jquery/dist/jquery.min.js',
-        'script-loader!foundation-sites/dist/js/foundation.js'
+        'script-loader!foundation-sites/dist/js/foundation.js',
+        'script-loader!jquery/dist/jquery.min.js'
     ],
     externals: {
-        foundation: 'Foundation'
+        foundation: 'Foundation',
+        $: 'jquery'
+
     },
     output: {
         path: path.resolve('public'),
@@ -46,6 +48,10 @@ module.exports = {
             filename: 'public/[name].bundle.css',
             allChunks: true,
         }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
     ],
     resolve: {
         alias: {

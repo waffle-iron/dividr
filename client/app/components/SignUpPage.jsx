@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import SignUpForm from '../components/SignUpForm.jsx';
+import SignUpForm from 'Components/SignUpForm';
 
 
 class SignUpPage extends React.Component {
@@ -51,11 +51,16 @@ class SignUpPage extends React.Component {
                 firstName,
                 lastName
             })
-            .then((response) => {
-                this.context.router.replace('/login');
+            .then(() => {
+                Auth.authenticateUser(response.data.token);
+                this.context.router.replace('/meallist');
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((errors) => {
+                if(errors.response) {
+                    this.setState({
+                        errors: errors.response
+                    });
+                }
             });
     }
 
@@ -78,13 +83,26 @@ class SignUpPage extends React.Component {
      * Render the component.
      */
     render() {
+        const errorMessage = () => {
+            if(this.state.errors.status === 422) {
+                return {
+                    errors: {
+                        statusMessage: this.state.errors.data.error
+                    }
+                }
+            } else {
+                return {
+                    errors: {}
+                }
+            }
+        };
         return (
             <div className="row">
                 <div className="column small-centered medium-4 large-5">
                     <SignUpForm
                         onSubmit={this.processForm}
                         onChange={this.changeUser}
-                        errors={this.state.errors}
+                        errors={errorMessage()}
                         user={this.state.user}
                     />
                 </div>

@@ -57,9 +57,14 @@ class LoginPage extends React.Component {
             .then((response) => {
                 Auth.authenticateUser(response.data.token);
                 this.context.router.replace('/meallist');
+                console.log(this.state);
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((errors) => {
+                if(errors.response) {
+                    this.setState({
+                        errors: errors.response
+                    });
+                }
             });
     }
 
@@ -73,6 +78,14 @@ class LoginPage extends React.Component {
         const user = this.state.user;
         user[field] = event.target.value;
 
+        if(user[field].length < 0 ) {
+            this.setState({
+                errors: {
+                    statusMessage: 'Please fill in the blanks fields below'
+                }
+            })
+        }
+
         this.setState({
             user
         });
@@ -82,13 +95,26 @@ class LoginPage extends React.Component {
      * Render the component.
      */
     render() {
+    const errorMessage = () => {
+        if(this.state.errors.status === 400) {
+            return {
+                errors: {
+                    statusMessage: 'Something went wrong, please check your inputs below'
+                }
+            }
+        } else {
+            return {
+                errors: {}
+            }
+        }
+    };
         return (
             <div className="row">
                 <div className="column small-centered medium-4 large-5">
                     <LoginForm
                         onSubmit={this.processForm}
                         onChange={this.changeUser}
-                        errors={this.state.errors}
+                        errors={errorMessage()}
                         successMessage={this.state.successMessage}
                         user={this.state.user}
                     />
