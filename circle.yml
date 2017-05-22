@@ -9,7 +9,7 @@ test:
   pre:
     - npm run report-coverage
   override:
-    - karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
+    - cd client && karma start ./karma.conf.js --single-run --browsers PhantomJS --reporters karma-junit-reporter:
     - mocha tests/**/*.test.js --reporter mocha-junit-reporter:
         parallel: true
         files:
