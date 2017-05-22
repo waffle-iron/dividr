@@ -10,8 +10,10 @@ module.exports = function (config) {
             './tests/**/*.test.jsx'
         ],
         plugins : [
-            'karma-webpack',
-            'karma-sourcemap-loader'
+            'karma-junit-reporter',
+            'karma-mocha',
+            'karma-sourcemap-loader',
+            'karma-webpack'
         ],
         preprocessors : {
             './tests/**/*.test.jsx' : ['webpack', 'sourcemap']
