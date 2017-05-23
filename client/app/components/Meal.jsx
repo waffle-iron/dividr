@@ -9,6 +9,7 @@ class Meal extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
+            portionSize: this.props.meal.portionSize,
             editable: false,
             meal: this.props.meal
         }
@@ -35,16 +36,15 @@ class Meal extends React.Component {
         let mealName = this.refs.mealName.value;
         let cookedWeight = this.refs.cookedWeight.value;
         let servings = this.refs.servings.value;
-        let portionSize = this.refs.portionSize.value;
         let baseUrl = '/api/v1/meals/' + id;
+        console.log(this.props);
 
         axios
             .patch(baseUrl,
                 {
                     mealName,
                     cookedWeight,
-                    servings,
-                    portionSize
+                    servings
                 }, {
                     headers: {
                         "Authorization" : `${Auth.getToken()}`
@@ -55,19 +55,26 @@ class Meal extends React.Component {
                     editable: false,
                     meal: response.data.meal
                 });
-                //this.props = response.data.meal;
                 console.log(response);
             })
             .catch((errors) => {
                 console.log(errors);
             });
     }
+    incrementValue = () => {
+        let value = parseInt(document.getElementById('servings').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('servings').value = value;
+    };
 
-    componentWillReceiveProps(nextProps) {
-        if(JSON.stringify(this.props.meal) !== JSON.stringify(nextProps.meal)){
-            console.log('Props received');
-        }
-    }
+    decrementValue = () => {
+        let value = parseInt(document.getElementById('servings').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value--;
+        document.getElementById('servings').value = value;
+    };
+
     render() {
         const editDecision = () => {
             if(this.state.editable) {
@@ -76,7 +83,8 @@ class Meal extends React.Component {
                         <div className="card-profile-stats-intro">
                             <div className="card-profile-stats-intro-content">
                                 <h3 className="meal-title">
-                                    <input type="text" ref="mealName" defaultValue={mealName} />
+                                    <label htmlFor="mealName">Name:</label>
+                                    <input type="text" id="mealName" ref="mealName" defaultValue={mealName} />
                                 </h3>
                             </div>
                             <button onClick={this.handleClick} className="button small">Cancel</button>
@@ -89,12 +97,18 @@ class Meal extends React.Component {
                                 <p>Cooked Weight</p>
                             </div>
                             <div className="card-profile-stats-statistic">
-                                <input type="number" ref="servings" defaultValue={servings}/>
+                                <div className="incrementer">
+                                    <div className="input-group input-number-group">
+                                        <div className="input-group-button">
+                                            <button className="input-number-decrement" onClick={this.decrementValue}>-</button>
+                                        </div>
+                                        <input className="input-number" id="servings" ref="servings" type="number" defaultValue={servings} min="0" max="1000" />
+                                        <div className="input-group-button">
+                                            <button className="input-number-increment" onClick={this.incrementValue} >+</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <p>Servings</p>
-                            </div>
-                            <div className="card-profile-stats-statistic">
-                                <input type="number" ref="portionSize" defaultValue={portionSize}/>
-                                <p>Portion Size</p>
                             </div>
                         </div>
                             <button type="submit" onClick={this.handleSubmit} className="button small">
