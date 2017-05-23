@@ -59,7 +59,12 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: space-between;
       text-align: left;
+
+      .button {
+        margin-bottom:0;
+      }
 
       .card-profile-stats-intro-pic {
         margin: 0 1.25rem 0 0;

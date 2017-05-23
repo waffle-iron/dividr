@@ -52,14 +52,14 @@ class SignUpPage extends React.Component {
                 lastName
             })
             .then(() => {
-                Auth.authenticateUser(response.data.token);
-                this.context.router.replace('/meallist');
+                this.context.router.replace('/login');
             })
             .catch((errors) => {
                 if(errors.response) {
                     this.setState({
                         errors: errors.response
                     });
+                    console.log(this.state);
                 }
             });
     }
