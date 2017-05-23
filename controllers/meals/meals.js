@@ -72,6 +72,19 @@ let deleteMeal = (req, res) => {
     });
 };
 
+let newWeek = (req, res) => {
+    Meal.deleteMany({
+        _creator: req.user._id
+    }).then((meals) => {
+        if(!meals) {
+            return res.sendStatus(404);
+        }
+        res.status(200).send({meals});
+    }).catch((e) => {
+        res.sendStatus(400).send(e);
+    })
+};
+
 let updateMeal = (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['mealName', 'servings', 'cookedWeight']);
@@ -95,5 +108,6 @@ module.exports = {
     listMeals,
     getMeal,
     deleteMeal,
+    newWeek,
     updateMeal
 };

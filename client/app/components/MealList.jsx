@@ -56,6 +56,9 @@ class MealList extends React.Component {
                                 <Meal key={meal._id} meal={meal} />
                             )
                         })}
+                    <button className="float-center button small">
+                        New Week
+                    </button>
                 </div>
             </div>
         </div>

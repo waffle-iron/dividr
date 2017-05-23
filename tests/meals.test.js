@@ -215,6 +215,21 @@ describe('DELETE /meals/:id', () => {
 
 });
 
+describe('DELETE /meals', () => {
+    it('should remove all meals for one user if a valid request is sent', (done) => {
+        createLoginToken(app, validLogin, (header) => {
+            request(app)
+                .delete('/api/v1/meals/')
+                .set('Authorization', header)
+                .expect(200)
+                .expect((res) => {
+                    expect(res.body.meal).toNotExist();
+                })
+                .end(done);
+        })
+    })
+});
+
 describe('PATCH /meals/:id', () => {
     it('should update a meal if a valid request is sent', (done) => {
         let id = meals[0]._id.toHexString();
