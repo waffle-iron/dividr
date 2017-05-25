@@ -40,6 +40,7 @@ let getMeal = (req, res) => {
 };
 
 let createMeal = (req, res) => {
+    console.log(req.body);
     let meal = new Meal({
         mealName : req.body.mealName,
         cookedWeight : req.body.cookedWeight,

@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
-import $ from 'jquery';
+import jquery from 'jquery';
+window.$ = window.jQuery = jquery;
+require('foundation-sites');
 
 import Main from 'Components/Main';
 import HomePage from 'Components/HomePage';
@@ -10,6 +12,7 @@ import LoginPage from 'Components/LoginPage';
 import LogoutPage from 'Components/LogoutPage';
 import SignUpPage from 'Components/SignUpPage';
 import MealList from 'Components/MealList';
+import NewWeek from 'Components/NewWeek';
 
 import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 import 'script-loader!./../node_modules/jquery/dist/jquery.min'
@@ -23,6 +26,7 @@ ReactDOM.render(
     <Router history={hashHistory} >
         <Route path="/" component={Main} >
             <Route path="/logout" component={LogoutPage} />
+            <Route path="/newweek" component={NewWeek} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/meallist" component={MealList}/>

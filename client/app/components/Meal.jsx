@@ -37,7 +37,6 @@ class Meal extends React.Component {
         let cookedWeight = this.refs.cookedWeight.value;
         let servings = this.refs.servings.value;
         let baseUrl = '/api/v1/meals/' + id;
-        console.log(this.props);
 
         axios
             .patch(baseUrl,

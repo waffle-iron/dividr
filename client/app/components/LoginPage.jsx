@@ -35,6 +35,10 @@ class LoginPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
     }
 
+    componentWillMount() {
+        document.title = "Dividr | Login"
+    }
+
     /**
      * Process the form.
      *
@@ -57,7 +61,6 @@ class LoginPage extends React.Component {
             .then((response) => {
                 Auth.authenticateUser(response.data.token);
                 this.context.router.replace('/meallist');
-                console.log(this.state);
             })
             .catch((errors) => {
                 if(errors.response) {

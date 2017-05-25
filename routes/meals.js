@@ -17,9 +17,9 @@ router.post('/', requireAuth, createMeal);
 
 router.get('/:id', requireAuth, getMeal);
 
-router.delete('/:id', requireAuth, deleteMeal);
-
 router.delete('/', requireAuth, newWeek);
+
+router.delete('/:id', requireAuth, deleteMeal);
 
 router.patch('/:id', requireAuth,  updateMeal);
 
