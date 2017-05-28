@@ -93,7 +93,7 @@ class MealList extends React.Component {
             .then((response) => {
                 this.setState({
                     creating: false,
-                    meals: this.state.meals.concat(response.data.doc)
+                    meals: this.state.meals.concat(response.data)
                 });
                 this.context.router.replace('/meallist');
             }).catch((e) => {
