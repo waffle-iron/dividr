@@ -19,7 +19,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
+//if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/public'));
+//}
 
 app.use('/api/v1', index);
 app.use('/api/v1/meals', meals);
