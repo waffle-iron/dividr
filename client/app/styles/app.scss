@@ -1,0 +1,14 @@
+// Foundation setup
+@import "~foundation-sites/scss/foundation";
+@include foundation-everything;
+
+// Local imports
+@import "base/variables";
+@import "components/Main";
+@import "components/Incrementer";
+@import "components/HomePage";
+@import "components/Header";
+@import "components/LoginPage";
+@import "components/SignUpForm";
+@import "components/Meal";
+@import "components/MealList";

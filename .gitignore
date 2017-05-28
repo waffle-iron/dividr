@@ -44,7 +44,6 @@ jspm_packages/
 .node_repl_history
 
 # Yarn Integrity file
-.yarn-integrity
 
 # dotenv environment variables file
 .env
@@ -98,3 +97,5 @@ fabric.properties
 .idea/
 
 newrelic_agent.log
+yarn.lock
+/client/TESTS.xml
