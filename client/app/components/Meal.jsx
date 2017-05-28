@@ -54,7 +54,6 @@ class Meal extends React.Component {
                     editable: false,
                     meal: response.data.meal
                 });
-                console.log(response);
             })
             .catch((errors) => {
                 console.log(errors);

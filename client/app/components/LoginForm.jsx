@@ -12,11 +12,11 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        let {successMessage, errors, onSubmit, onChange, user} = this.props;
+        let {successMessage, errors, onSubmit, onChange} = this.props;
            return(
                <div>
                    {successMessage && <FlashMessage message={successMessage} messageType="success"/>}
-                   {errors.errors.statusMessage && <FlashMessage message={errors.errors.statusMessage} messageType="alert"/>}
+                   {errors && <FlashMessage message={errors.statusMessage} messageType="alert"/>}
                    <div className="form-registration">
                        <figure className="form-registration-img">
                            <img src="https://images.pexels.com/photos/221205/pexels-photo-221205.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />

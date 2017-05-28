@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import {hashHistory} from 'react-router'
+import PropTypes from 'prop-types'
 
 import Meal from 'Components/Meal';
 import DeleteConfirm from 'Components/DeleteConfirm';
@@ -13,14 +14,17 @@ class MealList extends React.Component {
         super();
         this.startDeleting = this.startDeleting.bind(this);
         this.startCreating = this.startCreating.bind(this);
+        this.cancelCreate = this.cancelCreate.bind(this);
         this.changeMeal = this.changeMeal.bind(this);
         this.processForm = this.processForm.bind(this);
         this.state = {
             user: {
-                creating: true,
+                creating: false,
                 startDelete: false,
                 profile: {},
-                meals: []
+            },
+            meals: [],
+            errors:{
             }
         }
     }
@@ -36,7 +40,8 @@ class MealList extends React.Component {
                 })
                 .then((result) => {
                     _this.setState({
-                        user: result.data.user
+                        user: result.data.user,
+                        meals: result.data.user.meals
                     })
                 })
     }
@@ -71,11 +76,11 @@ class MealList extends React.Component {
 
     processForm(event) {
         event.preventDefault();
-        let mealName = this.state.user.meals.mealName;
-        let cookedWeight = this.state.user.meals.cookedWeight;
-        let servings = this.state.user.meals.servings;
-        console.log(servings);
+        let mealName = this.state.meals.mealName;
+        let cookedWeight = this.state.meals.cookedWeight;
+        let servings = this.state.meals.servings;
         axios
+            // POSTs form value
             .post('/api/v1/meals', {
                 mealName,
                 cookedWeight,
@@ -85,30 +90,54 @@ class MealList extends React.Component {
                     "Authorization" : `${Auth.getToken()}`
                 }
             })
-            .then(() => {
+            .then((response) => {
                 this.setState({
-                    creating: false
+                    creating: false,
+                    meals: this.state.meals.concat(response.data.doc)
                 });
-                this.context.router.replace('/meallist')
+                this.context.router.replace('/meallist');
             }).catch((e) => {
-            console.log(e)
+            if(e.response) {
+                this.setState({
+                    errors: e.response
+                });
+            }
+            console.log(e);
         })
     }
 
     changeMeal(event) {
-        console.log(event);
         const field = event.target.name;
-        const meals = this.state.user.meals;
+        const meals = this.state.meals;
         meals[field] = event.target.value;
-
         this.setState({
             meals
         });
     }
 
+    cancelCreate(event) {
+        event.preventDefault();
+        this.setState({
+            creating: false
+        })
+    }
 
     render() {
-        let {user} = this.state;
+        const errorMessage = () => {
+            if (this.state.errors.data) {
+                return {
+                    errors: {
+                        statusMessage: 'Something went wrong, please check your inputs below'
+                    }
+                }
+            } else {
+                return {
+                    errors: {}
+                }
+            }
+        };
+
+        let {user, meals} = this.state;
         let renderDeleteOrCreate = () => {
             if(this.state.startDelete) {
                 return (
@@ -116,13 +145,15 @@ class MealList extends React.Component {
                 )
             } else if(this.state.creating) {
                 return (
-                    <CreateMealForm onSubmit={this.processForm} onChange={this.changeMeal} />
+                    <CreateMealForm onSubmit={this.processForm} errors={errorMessage()} onChange={this.changeMeal} onClick={this.cancelCreate} />
                 )
             } else return (
 
                         <div>
-                            <h1>{user.profile.firstName}</h1>
-                            {user.meals.map((meal) => {
+                            <h3 className="meallist-title text-center">Welcome back {user.profile.firstName}!
+                                <br/>
+                                Here's your weeks meals</h3>
+                            {meals.map((meal) => {
                                 return (
                                     <Meal key={meal._id} meal={meal} />
                                 )
@@ -148,5 +179,9 @@ class MealList extends React.Component {
         );
     }
 }
+
+MealList.contextTypes = {
+    router: PropTypes.object.isRequired
+};
 
 export default MealList;

@@ -84,7 +84,7 @@ class LoginPage extends React.Component {
         if(user[field].length < 0 ) {
             this.setState({
                 errors: {
-                    statusMessage: 'Please fill in the blanks fields below'
+                    statusMessage: 'Please fill in the blank fields below'
                 }
             })
         }
@@ -101,13 +101,11 @@ class LoginPage extends React.Component {
     const errorMessage = () => {
         if(this.state.errors.status === 400) {
             return {
-                errors: {
-                    statusMessage: 'Something went wrong, please check your inputs below'
-                }
+                statusMessage: 'Something went wrong, please check your inputs below'
             }
-        } else {
+        } else if(this.state.errors.status === 401) {
             return {
-                errors: {}
+                statusMessage: "Incorrect login details, please try again."
             }
         }
     };

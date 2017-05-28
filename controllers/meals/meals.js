@@ -16,7 +16,9 @@ let listMeals = (req, res) => {
             }
         )
     }, (e) => {
-        res.status(400).send(e);
+        res.status(400).json({
+            e
+        });
     });
 
 };
@@ -50,7 +52,7 @@ let createMeal = (req, res) => {
     });
 
     meal.save().then((doc) => {
-        res.send(doc)
+        res.send({doc})
     }, (e) => {
         res.status(400).send(e);
     });

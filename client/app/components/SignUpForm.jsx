@@ -5,12 +5,12 @@ import { Link } from 'react-router';
 import FlashMessage from 'Components/FlashMessage';
 
 class SignUpForm extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
     }
 
     render() {
-        let {errors, onSubmit, onChange, user} = this.props;
+        let {errors, onSubmit, onChange} = this.props;
         return (
             <div>
                 {errors.errors.statusMessage && <FlashMessage message={errors.errors.statusMessage} messageType="alert"/>}
