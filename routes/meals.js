@@ -9,13 +9,15 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 //const requireLogin = passport.authenticate('local', { session: false });
 
 
-const {listMeals, getMeal, createMeal, updateMeal, deleteMeal} = require('./../controllers/meals/meals');
+const {listMeals, getMeal, createMeal, updateMeal, deleteMeal, newWeek} = require('./../controllers/meals/meals');
 
 router.get('/', requireAuth, listMeals);
 
 router.post('/', requireAuth, createMeal);
 
 router.get('/:id', requireAuth, getMeal);
+
+router.delete('/', requireAuth, newWeek);
 
 router.delete('/:id', requireAuth, deleteMeal);
 

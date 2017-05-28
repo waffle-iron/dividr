@@ -30,7 +30,7 @@ describe('GET /meals', () => {
                 .set('Authorization', header)
                 .expect(200)
                 .expect((res) => {
-                    expect(res.body.length).toBe(1);
+                    expect(res.body.user.meals.length).toBe(1);
                 })
                 .end(done);
         });
@@ -213,6 +213,21 @@ describe('DELETE /meals/:id', () => {
         });
     });
 
+});
+
+describe('DELETE /meals', () => {
+    it('should remove all meals for one user if a valid request is sent', (done) => {
+        createLoginToken(app, validLogin, (header) => {
+            request(app)
+                .delete('/api/v1/meals/')
+                .set('Authorization', header)
+                .expect(200)
+                .expect((res) => {
+                    expect(res.body.meal).toNotExist();
+                })
+                .end(done);
+        })
+    })
 });
 
 describe('PATCH /meals/:id', () => {

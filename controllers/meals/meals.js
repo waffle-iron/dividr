@@ -7,9 +7,18 @@ let listMeals = (req, res) => {
     Meal.find({
         _creator: req.user._id
     }).then((meals) => {
-        res.send(meals)
+        res.json(
+            {
+                user : {
+                    meals,
+                    profile: req.user.profile
+                }
+            }
+        )
     }, (e) => {
-        res.status(400).send(e);
+        res.status(400).json({
+            e
+        });
     });
 
 };
@@ -33,6 +42,7 @@ let getMeal = (req, res) => {
 };
 
 let createMeal = (req, res) => {
+    console.log(req.body);
     let meal = new Meal({
         mealName : req.body.mealName,
         cookedWeight : req.body.cookedWeight,
@@ -65,6 +75,19 @@ let deleteMeal = (req, res) => {
     });
 };
 
+let newWeek = (req, res) => {
+    Meal.deleteMany({
+        _creator: req.user._id
+    }).then((meals) => {
+        if(!meals) {
+            return res.sendStatus(404);
+        }
+        res.status(200).send({meals});
+    }).catch((e) => {
+        res.sendStatus(400).send(e);
+    })
+};
+
 let updateMeal = (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['mealName', 'servings', 'cookedWeight']);
@@ -88,5 +111,6 @@ module.exports = {
     listMeals,
     getMeal,
     deleteMeal,
+    newWeek,
     updateMeal
 };
