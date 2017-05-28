@@ -30,6 +30,10 @@ $button-group-option-button-fontsize: rem-calc(18); // controls size of button a
   }
 }
 
-.meallist-title {
-  padding-bottom: 1rem;
+.meal-list {
+  padding-top: 1rem;
+  .meallist-title {
+    padding-bottom: 1rem;
+  }
 }
+
