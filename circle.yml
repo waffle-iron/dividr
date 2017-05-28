@@ -19,6 +19,7 @@ test:
 
   post:
       - bash <(curl -s https://codecov.io/bash)
+      - cd client && webpack -p
 deployment:
   staging:
     branch: master
