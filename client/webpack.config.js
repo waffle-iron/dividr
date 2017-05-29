@@ -35,7 +35,9 @@ module.exports = {
             { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
             { test: /\.jsx$/, use: 'babel-loader', exclude: /node_modules/ },
             { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader?importLoaders=1'})},
-            { test: /\.(sass|scss)$/, use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])}
+            { test: /\.(sass|scss)$/, use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])},
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
         ]
     },
     plugins: [
