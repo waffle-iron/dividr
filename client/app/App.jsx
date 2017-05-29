@@ -5,6 +5,8 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import jquery from 'jquery';
 window.$ = window.jQuery = jquery;
 require('foundation-sites');
+require("font-awesome/css/font-awesome.min.css");
+
 
 import Main from 'Components/Main';
 import HomePage from 'Components/HomePage';
