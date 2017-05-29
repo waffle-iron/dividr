@@ -7,7 +7,7 @@ class Footer extends React.Component {
             <footer className="marketing-site-footer">
                 <div className="row medium-unstack">
                     <div className="medium-4 columns">
-                        <h4 className="marketing-site-footer-name">Dividr</h4>
+                        <h4 className="marketing-site-footer-name footer-title">Dividr</h4>
                         <p>Quick app to portion up meal sizes, <br/>
                             Any questions or improvements? Get in touch on <a href="mailto:cgray@hourglassdevelopment.co.uk">cgray@hourglassdevelopment.co.uk</a></p>
                     </div>
