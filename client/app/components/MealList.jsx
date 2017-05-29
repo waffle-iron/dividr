@@ -169,7 +169,7 @@ class MealList extends React.Component {
                     <div className="meal-list">
                 {renderDeleteOrCreate()}
                     <div className="button-group-option" data-grouptype="OR">
-                        <button onClick={this.startCreating} className="button success radius">Create New Meal</button>
+                        <button onClick={this.startCreating} className="button success radius">New Meal</button>
                         <button onClick={this.startDeleting} className="button primary radius">New Week</button>
                     </div>
                     </div>
