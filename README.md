@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Ashenmaster/dividr.png?label=ready&title=Ready)](https://waffle.io/Ashenmaster/dividr?utm_source=badge)
 [![codecov](https://codecov.io/gh/Ashenmaster/dividr/branch/develop/graph/badge.svg)](https://codecov.io/gh/Ashenmaster/dividr)
 
 [![CircleCI](https://circleci.com/gh/Ashenmaster/dividr.svg?style=svg)](https://circleci.com/gh/Ashenmaster/dividr)
